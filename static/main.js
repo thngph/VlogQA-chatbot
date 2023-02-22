@@ -28,17 +28,23 @@ urlinput.addEventListener("keypress", async function (event) {
         var content = urlinput.value;
 
         async function getRecord(vidId) {
-            return fetch(`http://127.0.0.1:8000/get-transcript/${vidId}`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-            }).then(response => response.json())
-                .then(response => JSON.parse(JSON.stringify(response))['transcript'])
+
+
+            // return fetch(`http://127.0.0.1:8000/get-transcript/${vidId}`, {
+            //     method: 'GET',
+            //     headers: {
+            //         'Accept': 'application/json',
+            //         'Content-Type': 'application/json'
+            //     },
+            // }).then(response => response.json())
+            //     .then(response => JSON.parse(JSON.stringify(response))['transcript'])
+
+            await new Promise(r => setTimeout(r, 2000));
+            return "This is just the UI for the site. The API server is not working."
+
+
         }
         let transcript = await getRecord(content.slice(-10. - 1));
-        console.log(transcript)
         document.getElementById("transcript-holder").innerHTML = transcript;
     }
 });
@@ -48,16 +54,19 @@ urlinput.addEventListener("keypress", async function (event) {
 
 // Get bot response
 async function getResponse(content) {
-    return fetch('http://127.0.0.1:8000/bot-response', {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ "question": `${content} + 1`, "context": "aa" })
-    })
-        .then(response => response.json())
-        .then(response => JSON.parse(JSON.stringify(response))['text'])
+    // return fetch('http://127.0.0.1:8000/bot-response', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({ "question": `${content} + 1`, "context": "aa" })
+    // })
+    //     .then(response => response.json())
+    //     .then(response => JSON.parse(JSON.stringify(response))['text'])
+
+    await new Promise(r => setTimeout(r, 2000));
+            return "The bot is down at the momment. Contact the maintainers for further information."
 }
 
 const input = document.getElementById("askInput");
