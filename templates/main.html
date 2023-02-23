@@ -85,7 +85,19 @@
           <!-- <img class="intro-img d-block rounded mx-auto" src="https://images.unsplash.com/photo-1509813685-e7f0e4eaf3ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80" alt=""> -->
           <script>$('.carousel').carousel({
               interval: 2000
-            })</script>
+            })
+            $(".carousel").swipe({
+
+swipe: function(event, direction, distance, duration, fingerCount, fingerData) {
+
+  if (direction == 'left') $(this).carousel('next');
+  if (direction == 'right') $(this).carousel('prev');
+
+},
+allowPageScroll:"vertical"
+
+});
+            </script>
           <div id="carouselExampleIndicators" class="carousel slide" data-touch="true" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>

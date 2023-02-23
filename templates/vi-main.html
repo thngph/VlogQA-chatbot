@@ -41,7 +41,8 @@
 
 
         <li class="nav-item">
-          <a class="nav-link " href="main.html"> <span class="lead">VIE</span>|<span class="second-language text-secondary">ENG</span> </a>
+          <a class="nav-link " href="main.html"> <span class="lead">VIE</span>|<span
+              class="second-language text-secondary">ENG</span> </a>
         </li>
 
 
@@ -69,7 +70,7 @@
 
           <div class="intro-text text-secondary">
             Được huấn luyện bằng tập dữ liệu trên 10.000 cặp câu hỏi-đáp trên transcript của Youtube vlog ở các
-            chủ đề về ẩm thực và du lịch, mô hình VlogQA được kì vọng sẽ có khả năng suy luận đơn giản để trả lời 
+            chủ đề về ẩm thực và du lịch, mô hình VlogQA được kì vọng sẽ có khả năng suy luận đơn giản để trả lời
             các câu hỏi trên ngữ cảnh mang tính chất ngôn ngữ nói.</div>
 
           <a href="./vi-chat.html" class="btn btn-light active mt-5" role="button" aria-pressed="true"
@@ -86,9 +87,22 @@
 
         <div class="col-md-6 col-xs-12">
           <!-- <img class="intro-img d-block rounded mx-auto" src="https://images.unsplash.com/photo-1509813685-e7f0e4eaf3ee?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=386&q=80" alt=""> -->
-          <script>$('.carousel').carousel({
+          <script>
+            $('.carousel').carousel({
               interval: 2000
-            })</script>
+            })
+            $(".carousel").swipe({
+
+              swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
+
+                if (direction == 'left') $(this).carousel('next');
+                if (direction == 'right') $(this).carousel('prev');
+
+              },
+              allowPageScroll: "vertical"
+
+            });
+          </script>
           <div id="carouselExampleIndicators" class="carousel slide" data-touch="true" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -134,18 +148,18 @@
 
       <div class="d-block row pt-5 align-items-center justify-content-center">
         <h1 class="py-5">Ví dụ về bộ dữ liệu</h1>
-  
+
         <p class="px-2 lead">Bên dưới là một transcript và một số câu hỏi mẫu (xem video gốc <a
-            href="https://www.youtube.com/watch?v=eqckPzeoDDg" target="_blank" rel="noopener noreferrer"
-            class="">tại đây</a>):</p>
-  
-  
+            href="https://www.youtube.com/watch?v=eqckPzeoDDg" target="_blank" rel="noopener noreferrer" class="">tại
+            đây</a>):</p>
+
+
         <div class="card bg-light mt-5">
           <div class="card-body">
-  
+
             <p class="mt-5 font-weight-bold">Transcript:</p>
-  
-  
+
+
             <div class="card px-2 mx-2 mb-5" style="background-color: #00e1ff34;">
               <div class="card-body">
                 [...] Thông thường ở một số địa phương khác thì không gọi đây là cống vào
@@ -158,68 +172,68 @@
                 Quảng Ngãi đến Kiên Giang do trung ương đầu tư [...] </div>
             </div>
             <p class="font-weight-bold">QAs:</p>
-  
-  
-  
+
+
+
             <p class="px-2">Công trình cống ngăn mặn sông Kiên dài bao nhiêu mét?</p>
-  
-  
+
+
             <div class="card bg-dark my-4 mx-2">
               <div class="card-body font-weight-bold text-white">
                 97.5
               </div>
             </div>
-  
+
             <p class="px-2">Kinh phí được đầu tư cho cống sông Kiên là bao nhiêu?</p>
-  
+
             <div class="card bg-dark my-4 mx-2">
               <div class="card-body font-weight-bold text-white">
                 196 tỷ đồng
               </div>
             </div>
-  
-  
+
+
           </div>
         </div>
       </div>
-  
+
       <div class="d-block row pt-5 align-items-center justify-content-center">
         <h1 class="py-5">Phương pháp</h1>
         <p class="px-2 lead">
           Mô hình được huấn luyện trên pre-trained model <span class="text-danger">xlm-roberta</span> .
-  
+
         </p>
-  
-  
+
+
       </div>
-  
+
       <div class="d-block row py-5 align-items-center justify-content-center">
         <h1 class="py-5">Hạn chế</h1>
         <p class="px-2 lead">Mỗi điểm dữ liệu được đưa cho mô hình là một cặp
           <span class="font-weight-bold" style="color: #ff0000;">(q, t)</span>, trong đó
-          <strong>q</strong> là câu hỏi dạng văn bản, <strong>t</strong> là transcript của một Youtube vlog. 
+          <strong>q</strong> là câu hỏi dạng văn bản, <strong>t</strong> là transcript của một Youtube vlog.
           Mục tiêu của mô hình là tìm ra câu trả lời <strong>a</strong>, là một đoạn trong transcript
           <strong>t</strong>.
           Thách thức lớn nhất của mô hình chính là độ phức tạp của transcript:
         </p>
-  
+
         <ul class="lead pr-1">
-  
+
           <li>Các vlog được chọn được tạo bởi người Việt Nam, nói tiếng Việt, sinh sống ở nhiều vùng miền, khu vực
-              khác nhau, do đó họ có thể nói phương ngữ khác nhau và mang các ngữ điệu đa dạng.
-              Ngoài ra, tiếng Việt là một ngôn ngữ có thanh sắc và cách phát âm các âm tiết có thể rất khác biệt 
-              giữa các vùng miền.
-              Trong khi phần lớn transcript được tạo tự động bởi các mô hình ngôn ngữ của nền tảng Youtube, sự đa 
-              dạng trong tiếng Việt có thể gây ra rất nhiều lỗi trong quá trình sinh transcript.
-              
+            khác nhau, do đó họ có thể nói phương ngữ khác nhau và mang các ngữ điệu đa dạng.
+            Ngoài ra, tiếng Việt là một ngôn ngữ có thanh sắc và cách phát âm các âm tiết có thể rất khác biệt
+            giữa các vùng miền.
+            Trong khi phần lớn transcript được tạo tự động bởi các mô hình ngôn ngữ của nền tảng Youtube, sự đa
+            dạng trong tiếng Việt có thể gây ra rất nhiều lỗi trong quá trình sinh transcript.
+
           </li>
-  
+
           <li>
-  
+
           </li> Định dạng transcript được cung cấp bởi nền tảng Youtube không thể hiện dấu câu,
-          ngắt nghỉ, cũng như khó phân biệt được lời độc thoại hay một cuộc đối thoại. Điều này dẫn 
+          ngắt nghỉ, cũng như khó phân biệt được lời độc thoại hay một cuộc đối thoại. Điều này dẫn
           đến việc transcript rất dài, khó hiểu, và hầu như không có sự ngắt câu, ngắt đoạn.
-          
+
         </ul>
       </div>
     </div>
