@@ -127,96 +127,100 @@
 
 
   <div class="container second">
-    <div class="d-block row pt-5 align-items-center justify-content-center">
-      <h1 class="py-5">Samples</h1>
-
-      <p class="px-2 lead">Following is a sample transcript and its QAs (to check out the original video, visit <a
-          href="https://www.youtube.com/watch?v=eqckPzeoDDg" target="_blank" rel="noopener noreferrer"
-          class="">here</a>):</p>
-
-
-      <div class="card bg-light mt-5">
-        <div class="card-body">
-
-          <p class="mt-5 font-weight-bold">Transcript:</p>
-
-
-          <div class="card px-2 mx-2 mb-5" style="background-color: #00e1ff34;">
-            <div class="card-body">
-              [...] Thông thường ở một số địa phương khác thì không gọi đây là cống vào
-              trong suy nghĩ của chúng tôi cứ nghĩ rằng cũng chỉ là một nơi thoát nước không
-              quá lớn nhưng khi tìm hiểu kỹ thì câu cống sông Kiên có chiều dài 97,5 m bắc
-              qua sông Kiên nối 2 phường Vĩnh Khang và Vĩnh thanhvân tổng số vốn đầu tư là
-              196 tỷ đồng đây không chỉ là công trình ngăn mặn giữ ngọt thoát lũ ra biển tây
-              phục vụ sản xuất nông nghiệp mà còn tạo thành tuyến giao thông ven biển nằm
-              trong chương trình mục tiêu quốc gia củng cố nâng cấp hệ thống đê biển từ tỉnh
-              Quảng Ngãi đến Kiên Giang do trung ương đầu tư [...] </div>
-          </div>
-          <p class="font-weight-bold">QAs:</p>
-
-
-
-          <p class="px-2">Công trình cống ngăn mặn sông Kiên dài bao nhiêu mét?</p>
-
-
-          <div class="card bg-dark my-4 mx-2">
-            <div class="card-body font-weight-bold text-white">
-              97.5
+    <div class="col-12">
+      <div class="d-block row pt-5 align-items-center justify-content-center">
+        <h1 class="py-5">Samples</h1>
+  
+        <p class="px-2 lead">Following is a sample transcript and its QAs (to check out the original video, visit <a
+            href="https://www.youtube.com/watch?v=eqckPzeoDDg" target="_blank" rel="noopener noreferrer"
+            class="">here</a>):</p>
+  
+  
+        <div class="card bg-light mt-5">
+          <div class="card-body">
+  
+            <p class="mt-5 font-weight-bold">Transcript:</p>
+  
+  
+            <div class="card px-2 mx-2 mb-5" style="background-color: #00e1ff34;">
+              <div class="card-body">
+                [...] Thông thường ở một số địa phương khác thì không gọi đây là cống vào
+                trong suy nghĩ của chúng tôi cứ nghĩ rằng cũng chỉ là một nơi thoát nước không
+                quá lớn nhưng khi tìm hiểu kỹ thì câu cống sông Kiên có chiều dài 97,5 m bắc
+                qua sông Kiên nối 2 phường Vĩnh Khang và Vĩnh thanhvân tổng số vốn đầu tư là
+                196 tỷ đồng đây không chỉ là công trình ngăn mặn giữ ngọt thoát lũ ra biển tây
+                phục vụ sản xuất nông nghiệp mà còn tạo thành tuyến giao thông ven biển nằm
+                trong chương trình mục tiêu quốc gia củng cố nâng cấp hệ thống đê biển từ tỉnh
+                Quảng Ngãi đến Kiên Giang do trung ương đầu tư [...] </div>
             </div>
-          </div>
-
-          <p class="px-2">Kinh phí được đầu tư cho cống sông Kiên là bao nhiêu?</p>
-
-          <div class="card bg-dark my-4 mx-2">
-            <div class="card-body font-weight-bold text-white">
-              196 tỷ đồng
+            <p class="font-weight-bold">QAs:</p>
+  
+  
+  
+            <p class="px-2">Công trình cống ngăn mặn sông Kiên dài bao nhiêu mét?</p>
+  
+  
+            <div class="card bg-dark my-4 mx-2">
+              <div class="card-body font-weight-bold text-white">
+                97.5
+              </div>
             </div>
+  
+            <p class="px-2">Kinh phí được đầu tư cho cống sông Kiên là bao nhiêu?</p>
+  
+            <div class="card bg-dark my-4 mx-2">
+              <div class="card-body font-weight-bold text-white">
+                196 tỷ đồng
+              </div>
+            </div>
+  
+  
           </div>
-
-
         </div>
+      </div>
+  
+      <div class="d-block row pt-5 align-items-center justify-content-center">
+        <h1 class="py-5">Methods</h1>
+        <p class="px-2 lead">
+          The serving model is trained on pre-trained image <span class="text-danger">xlm-roberta</span> .
+  
+        </p>
+  
+  
+      </div>
+  
+      <div class="d-block row py-5 align-items-center justify-content-center">
+        <h1 class="py-5">Limitations</h1>
+        <p class="px-2 lead">Each data point fed to the model during inference is a pair of
+          <span class="font-weight-bold" style="color: #ff0000;">(q, t)</span>, in which
+          <strong>q</strong> is a textual question, <strong>t</strong> is the transcript of a Youtube vlog. The goal of
+          the model is to extract the answer <strong>a</strong>, a word span in the reference transcript
+          <strong>t</strong>.
+          The main challenge is the comprehensibility of the transcript:
+        </p>
+  
+        <ul class="lead pr-1">
+  
+          <li>The selected vlogs are genuinely created by humans of the Vietnamese com-
+            munity and they may speak different Vietnamese dialects. Vietnamese is
+            also a language with tones, one word may be pronounced differently among
+            speakers. The transcripts were generated primarily by YouTube; therefore,
+            they contain errors due to automatic speech recognition (ASR).
+  
+          </li>
+  
+          <li>
+  
+          </li>The platform’s ASR system hardly uses any form of punctuation, including
+          the period ”.” and the comma ”,”. As a result, the transcript is a lengthy
+          collection of speeches, which could be monologues or dialogues, and are not
+          separated appropriately.
+  
+        </ul>
       </div>
     </div>
 
-    <div class="d-block row pt-5 align-items-center justify-content-center">
-      <h1 class="py-5">Methods</h1>
-      <p class="px-2 lead">
-        The serving model is trained on pre-trained image <span class="text-danger">xlm-roberta</span> .
 
-      </p>
-
-
-    </div>
-
-    <div class="d-block row py-5 align-items-center justify-content-center">
-      <h1 class="py-5">Limitations</h1>
-      <p class="px-2 lead">Each data point fed to the model during inference is a pair of
-        <span class="font-weight-bold" style="color: #ff0000;">(q, t)</span>, in which
-        <strong>q</strong> is a textual question, <strong>t</strong> is the transcript of a Youtube vlog. The goal of
-        the model is to extract the answer <strong>a</strong>, a word span in the reference transcript
-        <strong>t</strong>.
-        The main challenge is the comprehensibility of the transcript:
-      </p>
-
-      <ul class="lead pr-1">
-
-        <li>The selected vlogs are genuinely created by humans of the Vietnamese com-
-          munity and they may speak different Vietnamese dialects. Vietnamese is
-          also a language with tones, one word may be pronounced differently among
-          speakers. The transcripts were generated primarily by YouTube; therefore,
-          they contain errors due to automatic speech recognition (ASR).
-
-        </li>
-
-        <li>
-
-        </li>The platform’s ASR system hardly uses any form of punctuation, including
-        the period ”.” and the comma ”,”. As a result, the transcript is a lengthy
-        collection of speeches, which could be monologues or dialogues, and are not
-        separated appropriately.
-
-      </ul>
-    </div>
   </div>
   <footer class="footer-bg text-center text-white">
     <!-- Grid container -->

@@ -130,96 +130,101 @@
 
 
   <div class="container second">
-    <div class="d-block row pt-5 align-items-center justify-content-center">
-      <h1 class="py-5">Ví dụ về bộ dữ liệu</h1>
+    <div class="col-12">
 
-      <p class="px-2 lead">Bên dưới là một transcript và một số câu hỏi mẫu (xem video gốc <a
-          href="https://www.youtube.com/watch?v=eqckPzeoDDg" target="_blank" rel="noopener noreferrer"
-          class="">tại đây</a>):</p>
-
-
-      <div class="card bg-light mt-5">
-        <div class="card-body">
-
-          <p class="mt-5 font-weight-bold">Transcript:</p>
-
-
-          <div class="card px-2 mx-2 mb-5" style="background-color: #00e1ff34;">
-            <div class="card-body">
-              [...] Thông thường ở một số địa phương khác thì không gọi đây là cống vào
-              trong suy nghĩ của chúng tôi cứ nghĩ rằng cũng chỉ là một nơi thoát nước không
-              quá lớn nhưng khi tìm hiểu kỹ thì câu cống sông Kiên có chiều dài 97,5 m bắc
-              qua sông Kiên nối 2 phường Vĩnh Khang và Vĩnh thanhvân tổng số vốn đầu tư là
-              196 tỷ đồng đây không chỉ là công trình ngăn mặn giữ ngọt thoát lũ ra biển tây
-              phục vụ sản xuất nông nghiệp mà còn tạo thành tuyến giao thông ven biển nằm
-              trong chương trình mục tiêu quốc gia củng cố nâng cấp hệ thống đê biển từ tỉnh
-              Quảng Ngãi đến Kiên Giang do trung ương đầu tư [...] </div>
-          </div>
-          <p class="font-weight-bold">QAs:</p>
-
-
-
-          <p class="px-2">Công trình cống ngăn mặn sông Kiên dài bao nhiêu mét?</p>
-
-
-          <div class="card bg-dark my-4 mx-2">
-            <div class="card-body font-weight-bold text-white">
-              97.5
+      <div class="d-block row pt-5 align-items-center justify-content-center">
+        <h1 class="py-5">Ví dụ về bộ dữ liệu</h1>
+  
+        <p class="px-2 lead">Bên dưới là một transcript và một số câu hỏi mẫu (xem video gốc <a
+            href="https://www.youtube.com/watch?v=eqckPzeoDDg" target="_blank" rel="noopener noreferrer"
+            class="">tại đây</a>):</p>
+  
+  
+        <div class="card bg-light mt-5">
+          <div class="card-body">
+  
+            <p class="mt-5 font-weight-bold">Transcript:</p>
+  
+  
+            <div class="card px-2 mx-2 mb-5" style="background-color: #00e1ff34;">
+              <div class="card-body">
+                [...] Thông thường ở một số địa phương khác thì không gọi đây là cống vào
+                trong suy nghĩ của chúng tôi cứ nghĩ rằng cũng chỉ là một nơi thoát nước không
+                quá lớn nhưng khi tìm hiểu kỹ thì câu cống sông Kiên có chiều dài 97,5 m bắc
+                qua sông Kiên nối 2 phường Vĩnh Khang và Vĩnh thanhvân tổng số vốn đầu tư là
+                196 tỷ đồng đây không chỉ là công trình ngăn mặn giữ ngọt thoát lũ ra biển tây
+                phục vụ sản xuất nông nghiệp mà còn tạo thành tuyến giao thông ven biển nằm
+                trong chương trình mục tiêu quốc gia củng cố nâng cấp hệ thống đê biển từ tỉnh
+                Quảng Ngãi đến Kiên Giang do trung ương đầu tư [...] </div>
             </div>
-          </div>
-
-          <p class="px-2">Kinh phí được đầu tư cho cống sông Kiên là bao nhiêu?</p>
-
-          <div class="card bg-dark my-4 mx-2">
-            <div class="card-body font-weight-bold text-white">
-              196 tỷ đồng
+            <p class="font-weight-bold">QAs:</p>
+  
+  
+  
+            <p class="px-2">Công trình cống ngăn mặn sông Kiên dài bao nhiêu mét?</p>
+  
+  
+            <div class="card bg-dark my-4 mx-2">
+              <div class="card-body font-weight-bold text-white">
+                97.5
+              </div>
             </div>
+  
+            <p class="px-2">Kinh phí được đầu tư cho cống sông Kiên là bao nhiêu?</p>
+  
+            <div class="card bg-dark my-4 mx-2">
+              <div class="card-body font-weight-bold text-white">
+                196 tỷ đồng
+              </div>
+            </div>
+  
+  
           </div>
-
-
         </div>
+      </div>
+  
+      <div class="d-block row pt-5 align-items-center justify-content-center">
+        <h1 class="py-5">Phương pháp</h1>
+        <p class="px-2 lead">
+          Mô hình được huấn luyện trên pre-trained model <span class="text-danger">xlm-roberta</span> .
+  
+        </p>
+  
+  
+      </div>
+  
+      <div class="d-block row py-5 align-items-center justify-content-center">
+        <h1 class="py-5">Hạn chế</h1>
+        <p class="px-2 lead">Mỗi điểm dữ liệu được đưa cho mô hình là một cặp
+          <span class="font-weight-bold" style="color: #ff0000;">(q, t)</span>, trong đó
+          <strong>q</strong> là câu hỏi dạng văn bản, <strong>t</strong> là transcript của một Youtube vlog. 
+          Mục tiêu của mô hình là tìm ra câu trả lời <strong>a</strong>, là một đoạn trong transcript
+          <strong>t</strong>.
+          Thách thức lớn nhất của mô hình chính là độ phức tạp của transcript:
+        </p>
+  
+        <ul class="lead pr-1">
+  
+          <li>Các vlog được chọn được tạo bởi người Việt Nam, nói tiếng Việt, sinh sống ở nhiều vùng miền, khu vực
+              khác nhau, do đó họ có thể nói phương ngữ khác nhau và mang các ngữ điệu đa dạng.
+              Ngoài ra, tiếng Việt là một ngôn ngữ có thanh sắc và cách phát âm các âm tiết có thể rất khác biệt 
+              giữa các vùng miền.
+              Trong khi phần lớn transcript được tạo tự động bởi các mô hình ngôn ngữ của nền tảng Youtube, sự đa 
+              dạng trong tiếng Việt có thể gây ra rất nhiều lỗi trong quá trình sinh transcript.
+              
+          </li>
+  
+          <li>
+  
+          </li> Định dạng transcript được cung cấp bởi nền tảng Youtube không thể hiện dấu câu,
+          ngắt nghỉ, cũng như khó phân biệt được lời độc thoại hay một cuộc đối thoại. Điều này dẫn 
+          đến việc transcript rất dài, khó hiểu, và hầu như không có sự ngắt câu, ngắt đoạn.
+          
+        </ul>
       </div>
     </div>
 
-    <div class="d-block row pt-5 align-items-center justify-content-center">
-      <h1 class="py-5">Phương pháp</h1>
-      <p class="px-2 lead">
-        Mô hình được huấn luyện trên pre-trained model <span class="text-danger">xlm-roberta</span> .
 
-      </p>
-
-
-    </div>
-
-    <div class="d-block row py-5 align-items-center justify-content-center">
-      <h1 class="py-5">Hạn chế</h1>
-      <p class="px-2 lead">Mỗi điểm dữ liệu được đưa cho mô hình là một cặp
-        <span class="font-weight-bold" style="color: #ff0000;">(q, t)</span>, trong đó
-        <strong>q</strong> là câu hỏi dạng văn bản, <strong>t</strong> là transcript của một Youtube vlog. 
-        Mục tiêu của mô hình là tìm ra câu trả lời <strong>a</strong>, là một đoạn trong transcript
-        <strong>t</strong>.
-        Thách thức lớn nhất của mô hình chính là độ phức tạp của transcript:
-      </p>
-
-      <ul class="lead pr-1">
-
-        <li>Các vlog được chọn được tạo bởi người Việt Nam, nói tiếng Việt, sinh sống ở nhiều vùng miền, khu vực
-            khác nhau, do đó họ có thể nói phương ngữ khác nhau và mang các ngữ điệu đa dạng.
-            Ngoài ra, tiếng Việt là một ngôn ngữ có thanh sắc và cách phát âm các âm tiết có thể rất khác biệt 
-            giữa các vùng miền.
-            Trong khi phần lớn transcript được tạo tự động bởi các mô hình ngôn ngữ của nền tảng Youtube, sự đa 
-            dạng trong tiếng Việt có thể gây ra rất nhiều lỗi trong quá trình sinh transcript.
-            
-        </li>
-
-        <li>
-
-        </li> Định dạng transcript được cung cấp bởi nền tảng Youtube không thể hiện dấu câu,
-        ngắt nghỉ, cũng như khó phân biệt được lời độc thoại hay một cuộc đối thoại. Điều này dẫn 
-        đến việc transcript rất dài, khó hiểu, và hầu như không có sự ngắt câu, ngắt đoạn.
-        
-      </ul>
-    </div>
   </div>
   <footer class="footer-bg text-center text-white">
     <!-- Grid container -->
