@@ -91,17 +91,6 @@
             $('.carousel').carousel({
               interval: 2000
             })
-            $(".carousel").swipe({
-
-              swipe: function (event, direction, distance, duration, fingerCount, fingerData) {
-
-                if (direction == 'left') $(this).carousel('next');
-                if (direction == 'right') $(this).carousel('prev');
-
-              },
-              allowPageScroll: "vertical"
-
-            });
           </script>
           <div id="carouselExampleIndicators" class="carousel slide" data-touch="true" data-ride="carousel">
             <ol class="carousel-indicators">
