@@ -14,7 +14,19 @@ window.onload = function () {
         chatbox.innerHTML += `<div class="chat-bubble friend">
                 Chào mừng đến với bình nguyên vô tận.
               </div>`;
+    }, 1000);
+
+    setTimeout(function () {
+        chatbox.innerHTML += `<div class="chat-bubble friend">
+                Đây là demo cho VlogQA. Trước khi đặt câu hỏi, vui lòng nhập URL đến video cần tìm hiểu.
+                
+              </div>`;
     }, 2000);
+    setTimeout(function () {
+        chatbox.innerHTML += `<div class="chat-bubble friend">
+                Lần đầu sử dụng có thể mất khoảng 20s để mô hình khởi động, mong mọi người thông cảm.
+              </div>`;
+    }, 3000);
 
 
 };
@@ -71,7 +83,12 @@ async function getResponse(content) {
         body: JSON.stringify({ "question": `${content}`, "context": `${transcript}` })
     })
         .then(response => response.json())
-        .then(response => JSON.parse(JSON.stringify(response))['answer'])
+        .then(response => {if (JSON.parse(JSON.stringify(response))['score']>.05) {return JSON.parse(JSON.stringify(response))['answer']}
+         else {return "Xin vui lòng hỏi lại, câu hỏi chưa rõ ràng hoặc không nằm trong phạm vi ngữ cảnh."}})
+        .catch((error) => {
+            console.error('Error:', error);
+            console.log("server is down!!")  
+            return "The model is booting, please retry after 20 seconds. Otherwise, contact the maintainer."})
 
     // await new Promise(r => setTimeout(r, 2000));
     //         return "The bot is down at the momment. Contact the maintainers for further information."
