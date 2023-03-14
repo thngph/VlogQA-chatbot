@@ -14,11 +14,13 @@ window.onload = function () {
         chatbox.innerHTML += `<div class="chat-bubble friend">
                 Chào mừng đến với bình nguyên vô tận.
               </div>`;
-    }, 3000);
+    }, 2000);
 
 
 };
 
+
+let transcript = ""
 
 // Get transcript
 const urlinput = document.getElementById("url");
@@ -30,21 +32,27 @@ urlinput.addEventListener("keypress", async function (event) {
         async function getRecord(vidId) {
 
 
-            // return fetch(`http://127.0.0.1:8000/get-transcript/${vidId}`, {
-            //     method: 'GET',
-            //     headers: {
-            //         'Accept': 'application/json',
-            //         'Content-Type': 'application/json'
-            //     },
-            // }).then(response => response.json())
-            //     .then(response => JSON.parse(JSON.stringify(response))['transcript'])
+            return fetch(`http://127.0.0.1:8000/get-transcript/${vidId}`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+            }).then(response =>
+                response.json())
+                .then(response => JSON.parse(JSON.stringify(response))['transcript'])
+                .catch((error) => {
+                    console.error('Error:', error);
+                    console.log("server is down!!")  
+                    return "Lỗi 503 Service Unavailable là mã trạng thái HTTP (HTTP status code), có nghĩa là máy chủ của trang web tạm thời ngừng hoạt động. Lỗi này xảy ra vì máy chủ quá “bận” hoặc trang web đang trong quá trình bảo trì." 
+                  });
 
-            await new Promise(r => setTimeout(r, 2000));
-            return "This is just the UI for the site. The API server is not working."
+            // await new Promise(r => setTimeout(r, 2000));
+            // return "This is just the UI for the site. The API server is not working."
 
 
         }
-        let transcript = await getRecord(content.slice(-10. - 1));
+        transcript = await getRecord(content.slice(-10. - 1));
         document.getElementById("transcript-holder").innerHTML = transcript;
     }
 });
@@ -54,19 +62,19 @@ urlinput.addEventListener("keypress", async function (event) {
 
 // Get bot response
 async function getResponse(content) {
-    // return fetch('http://127.0.0.1:8000/bot-response', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({ "question": `${content} + 1`, "context": "aa" })
-    // })
-    //     .then(response => response.json())
-    //     .then(response => JSON.parse(JSON.stringify(response))['text'])
+    console.log({ "question": `${content}`, "context": `${transcript}` })
+    return fetch('https://api-inference.huggingface.co/models/KhoaDan9/xlmr_10k_ques_10epoches', {
+        method: 'POST',
+        headers: {
+            "Authorization": "Bearer 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"
+        },
+        body: JSON.stringify({ "question": `${content}`, "context": `${transcript}` })
+    })
+        .then(response => response.json())
+        .then(response => JSON.parse(JSON.stringify(response))['answer'])
 
-    await new Promise(r => setTimeout(r, 2000));
-            return "The bot is down at the momment. Contact the maintainers for further information."
+    // await new Promise(r => setTimeout(r, 2000));
+    //         return "The bot is down at the momment. Contact the maintainers for further information."
 }
 
 const input = document.getElementById("askInput");
