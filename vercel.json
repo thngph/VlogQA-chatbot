@@ -1,0 +1,5 @@
+{
+    "builds": [
+      {"src": "fast.py", "use": "@now/python"}
+    ]
+  }
