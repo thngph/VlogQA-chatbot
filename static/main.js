@@ -44,7 +44,7 @@ urlinput.addEventListener("keypress", async function (event) {
         async function getRecord(vidId) {
 
 
-            return fetch(`http://127.0.0.1:8000/get-transcript/${vidId}`, {
+            return fetch(`https://vlgchtsrv.vercel.app/get-transcript/${vidId}`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
