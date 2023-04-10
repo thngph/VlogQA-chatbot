@@ -83,7 +83,7 @@ async function getResponse(content) {
         body: JSON.stringify({ "question": `${content}`, "context": `${transcript}` })
     })
         .then(response => response.json())
-        .then(response => {if (JSON.parse(JSON.stringify(response))['score']>.05) {return JSON.parse(JSON.stringify(response))['answer']}
+        .then(response => {if (JSON.parse(JSON.stringify(response))['score']>.001) {return JSON.parse(JSON.stringify(response))['answer']}
          else {return "Xin vui lòng hỏi lại, câu hỏi chưa rõ ràng hoặc không nằm trong phạm vi ngữ cảnh."}})
         .catch((error) => {
             console.error('Error:', error);
