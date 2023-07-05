@@ -67,7 +67,7 @@ async function getResponse(content) {
         const response = await fetch('https://api-inference.huggingface.co/models/KhoaDan9/XLMR_LARGE_2', {
             method: 'POST',
             headers: {
-                "Authorization": "Bearer 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"
+                "Authorization": "Bearer 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"
             },
             body: JSON.stringify({ "question": `${content}`, "context": `${transcript}` })
         })
