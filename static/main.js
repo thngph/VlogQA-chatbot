@@ -76,7 +76,7 @@ async function getResponse(content) {
         const response = await fetch('https://huggingface.co/KhoaDan9/xlmr_10k_ques_10epoches', {
             method: 'POST',
             headers: {
-                "Authorization": "Bearer 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"
+                "Authorization": "Bearer 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"
             },
             body: JSON.stringify({ "question": `${content}`, "context": `${transcript}` })
         })
