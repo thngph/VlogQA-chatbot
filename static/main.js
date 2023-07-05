@@ -77,8 +77,10 @@ async function getResponse(content) {
         }
 
         const data = await response.json()
-
-        if (data['score'] && data['score'] > 0.0005) {
+        if (!data['score') {
+            throw new Error('Server is down or undergoing maintenance')
+        }
+        if (data['score'] > 0.0005) {
             return data['answer']
         } else {
             return "Xin vui lòng hỏi lại, câu hỏi chưa rõ ràng hoặc không nằm trong phạm vi ngữ cảnh."
