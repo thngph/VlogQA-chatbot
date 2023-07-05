@@ -9,12 +9,6 @@ window.onload = function () {
             <div></div>
             <div></div>
               </div>`;
-    setTimeout(function () {
-        document.querySelectorAll(".bounce-loading").forEach(el => el.remove());
-        chatbox.innerHTML += `<div class="chat-bubble friend">
-                Chào mừng đến với bình nguyên vô tận.
-              </div>`;
-    }, 1000);
 
     setTimeout(function () {
         chatbox.innerHTML += `<div class="chat-bubble friend">
@@ -75,23 +69,30 @@ urlinput.addEventListener("keypress", async function (event) {
 // Get bot response
 async function getResponse(content) {
     console.log({ "question": `${content}`, "context": `${transcript}` })
-    return fetch('https://api-inference.huggingface.co/models/KhoaDan9/XLMR_LARGE_2', {
-        method: 'POST',
-        headers: {
-            "Authorization": "Bearer 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"
-        },
-        body: JSON.stringify({ "question": `${content}`, "context": `${transcript}` })
-    })
-        .then(response => response.json())
-        .then(response => {if (JSON.parse(JSON.stringify(response))['score']>.001) {return JSON.parse(JSON.stringify(response))['answer']}
-         else {return "Xin vui lòng hỏi lại, câu hỏi chưa rõ ràng hoặc không nằm trong phạm vi ngữ cảnh."}})
-        .catch((error) => {
-            console.error('Error:', error);
-            console.log("server is down!!")  
-            return "The model is booting, please retry after 20 seconds. Otherwise, contact the maintainer."})
+    try {
+        const response = await fetch('https://api-inference.huggingface.co/models/KhoaDan9/XLMR_LARGE_2', {
+            method: 'POST',
+            headers: {
+                "Authorization": "Bearer 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"
+            },
+            body: JSON.stringify({ "question": `${content}`, "context": `${transcript}` })
+        })
 
-    // await new Promise(r => setTimeout(r, 2000));
-    //         return "The bot is down at the momment. Contact the maintainers for further information."
+        if (!response.ok) {
+            throw new Error('Server is down or undergoing maintenance')
+        }
+
+        const data = await response.json()
+
+        if (data['score'] && data['score'] > 0.0005) {
+            return data['answer']
+        } else {
+            return "Xin vui lòng hỏi lại, câu hỏi chưa rõ ràng hoặc không nằm trong phạm vi ngữ cảnh."
+        }
+    } catch (error) {
+        console.error(error)
+        return "Lỗi kết nối tới máy chủ, vui lòng thử lại sau."
+    }
 }
 
 const input = document.getElementById("askInput");
