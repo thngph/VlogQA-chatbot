@@ -73,7 +73,7 @@ urlinput.addEventListener("keypress", async function (event) {
 async function getResponse(content) {
     console.log({ "question": `${content}`, "context": `${transcript}` })
     try {
-        const response = await fetch('https://api-inference.huggingface.co/models/KhoaDan9/XLMR_LARGE_2', {
+        const response = await fetch('https://huggingface.co/KhoaDan9/xlmr_10k_ques_10epoches', {
             method: 'POST',
             headers: {
                 "Authorization": "Bearer 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"
