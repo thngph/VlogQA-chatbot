@@ -3,6 +3,15 @@
 
 window.onload = function () {
     const chatbox = document.getElementById("chatbox");
+    chatbox.innerHTML += `<div class="chat-bubble friend bounce-loading" style="padding: 1.5rem 1rem .6rem">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+              </div>`;
+    setTimeout(function () {
+        document.querySelectorAll(".bounce-loading").forEach(el => el.remove());
+    }, 1200);
 
     setTimeout(function () {
         chatbox.innerHTML += `<div class="chat-bubble friend">
