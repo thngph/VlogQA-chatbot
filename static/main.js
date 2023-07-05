@@ -86,7 +86,7 @@ async function getResponse(content) {
         }
 
         const data = await response.json()
-        if (!data['score') {
+        if (!data['score']) {
             throw new Error('Server is down or undergoing maintenance')
         }
         if (data['score'] > 0.0005) {
