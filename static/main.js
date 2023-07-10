@@ -66,35 +66,30 @@ urlinput.addEventListener("keypress", async function (event) {
     }
 });
 
-
-
-
 // Get bot response
 async function getResponse(content) {
     console.log({ "question": `${content}`, "context": `${transcript}` })
-    try {
-        const response = await fetch('https://huggingface.co/KhoaDan9/xlmr_10k_ques_10epoches', {
-            method: 'POST',
-            headers: {
-                "Authorization": "Bearer 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"
-            },
-            mode: 'no-cors',
-            body: JSON.stringify({ "question": `${content}`, "context": `${transcript}` })
-        })
-
-        const data = await response.json()
-        if (!data['score']) {
-            throw new Error('Server is down or undergoing maintenance')
-        }
-        if (data['score'] > 0.0005) {
-            return data['answer']
-        } else {
-            return "Xin vui lòng hỏi lại, câu hỏi chưa rõ ràng hoặc không nằm trong phạm vi ngữ cảnh."
-        }
-    } catch (error) {
-        console.error(error)
-        return "Lỗi kết nối tới máy chủ, vui lòng thử lại sau."
-    }
+    return fetch('https://api-inference.huggingface.co/models/KhoaDan9/xlmr_10k_ques_10epoches', {
+        method: 'POST',
+        headers: {
+            "Authorization": "Bearer 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"
+        },
+        body: JSON.stringify({ "question": `${content}`, "context": `${transcript}` })
+    }).then(response => response.json())
+        .then(response => {
+            
+            data = (JSON.parse(JSON.stringify(response)))
+            if (!data['score']) {
+                throw new Error('Server is down or undergoing maintenance')
+            }
+            if (JSON.parse(JSON.stringify(response))['score']>.0005) {return JSON.parse(JSON.stringify(response))['answer']}
+         else {return "Xin vui lòng hỏi lại, câu hỏi chưa rõ ràng hoặc không nằm trong phạm vi ngữ cảnh."}})
+        .catch((error) => {
+            console.error('Error:', error);
+            console.log("server is down!!")  
+            return "The model is booting, please retry after 20 seconds. Otherwise, contact the maintainer."})
+    // await new Promise(r => setTimeout(r, 2000));
+    //         return "The bot is down at the momment. Contact the maintainers for further information."
 }
 
 const input = document.getElementById("askInput");
